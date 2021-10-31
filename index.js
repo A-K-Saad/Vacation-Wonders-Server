@@ -20,10 +20,11 @@ const run = async () => {
     const database = client.db("VacationWonders");
     const packageCollection = database.collection("packages");
     const orderCollection = database.collection("orders");
+    const serviceCollection = database.collection("services");
 
     app.get("/packages", async (req, res) => {
       const result = await packageCollection.find({}).toArray();
-      res.send(result);
+      res.json(result);
     });
     //Post Packages
     app.post("/packages", async (req, res) => {
@@ -45,7 +46,7 @@ const run = async () => {
     });
     app.get("/orders", async (req, res) => {
       const result = await orderCollection.find({}).toArray();
-      res.send(result);
+      res.json(result);
     });
     //Update Order
     app.put("/orders", async (req, res) => {
@@ -84,6 +85,11 @@ const run = async () => {
       } else {
         res.send("Search Your Orders");
       }
+    });
+    //Get Services
+    app.get("/services", async (req, res) => {
+      const result = await serviceCollection.find({}).toArray();
+      res.json(result);
     });
   } catch (error) {
     console.log(error);
