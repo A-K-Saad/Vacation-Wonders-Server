@@ -97,6 +97,12 @@ const run = async () => {
       const result = await blogCollection.find({}).toArray();
       res.json(result);
     });
+    app.get("/blogs/:blogId", async (req, res) => {
+      const id = req.params.blogId;
+      const query = { _id: ObjectId(id) };
+      const result = await packageCollection.findOne(query);
+      res.send(result);
+    });
   } catch (error) {
     console.log(error);
   }
