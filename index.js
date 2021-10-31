@@ -50,7 +50,7 @@ const run = async () => {
     //Update Order
     app.put("/orders", async (req, res) => {
       const filter = { _id: ObjectId(req.body._id) };
-      const updateDoc = { $set: { pending: req.body.pending } };
+      const updateDoc = { $set: { status: req.body.status } };
       const options = { upsert: true };
       const result = await orderCollection.updateOne(
         filter,
