@@ -100,7 +100,7 @@ const run = async () => {
     app.get("/blogs/:blogId", async (req, res) => {
       const id = req.params.blogId;
       const query = { _id: ObjectId(id) };
-      const result = await packageCollection.findOne(query);
+      const result = await blogCollection.findOne(query);
       res.send(result);
     });
   } catch (error) {
