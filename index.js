@@ -21,6 +21,7 @@ const run = async () => {
     const packageCollection = database.collection("packages");
     const orderCollection = database.collection("orders");
     const serviceCollection = database.collection("services");
+    const blogCollection = database.collection("blogs");
 
     app.get("/packages", async (req, res) => {
       const result = await packageCollection.find({}).toArray();
@@ -89,6 +90,11 @@ const run = async () => {
     //Get Services
     app.get("/services", async (req, res) => {
       const result = await serviceCollection.find({}).toArray();
+      res.json(result);
+    });
+    //Get Blogs
+    app.get("/blogs", async (req, res) => {
+      const result = await blogCollection.find({}).toArray();
       res.json(result);
     });
   } catch (error) {
