@@ -47,6 +47,20 @@ const run = async () => {
       const result = await orderCollection.find({}).toArray();
       res.send(result);
     });
+    //Update Order
+    app.put("/orders", async (req, res) => {
+      const filter = { _id: ObjectId(req.body._id) };
+      const updateDoc = { $set: { pending: req.body.pending } };
+      const options = { upsert: true };
+      const result = await orderCollection.updateOne(
+        filter,
+        updateDoc,
+        options
+      );
+      console.log(
+        `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`
+      );
+    });
     //Delete Orders
     app.delete("/orders", async (req, res) => {
       const query = { _id: ObjectId(req.body._id) };
